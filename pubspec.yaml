@@ -1,0 +1,51 @@
+name: frame_fuse
+description: "FrameFuse — One take. Both formats. Record once, get portrait 9:16 and landscape 16:9."
+publish_to: 'none'
+version: 1.0.1+2
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+  camera: ^0.11.0
+  flutter_riverpod: ^2.6.1
+  video_player: ^2.9.0
+  path_provider: ^2.1.0
+  permission_handler: ^11.3.0
+  share_plus: ^10.0.0
+  shared_preferences: ^2.3.0
+  intl: ^0.19.0
+  uuid: ^4.4.0
+  path: ^1.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  mocktail: ^1.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/fonts/OFL.txt
+    - assets/images/
+    - assets/fonts/logo/
+
+  # Work Sans (SIL OFL 1.1) is bundled so typography is identical offline and
+  # in release builds, and the app never contacts a font CDN.
+  fonts:
+    - family: WorkSans
+      fonts:
+        - asset: assets/fonts/WorkSans-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/WorkSans-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/WorkSans-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/WorkSans-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/WorkSans-ExtraBold.ttf
+          weight: 800

@@ -1,0 +1,7 @@
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Services take named, public constructor parameters and store them in
+    # private fields; initializing formals can't express that.
+    prefer_initializing_formals: false
