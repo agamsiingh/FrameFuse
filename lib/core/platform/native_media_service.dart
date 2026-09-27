@@ -221,6 +221,16 @@ class NativeMediaService {
     }
   }
 
+  /// Opens an https [url] in the user's browser. Returns false if no app
+  /// can handle it.
+  Future<bool> openUrl(String url) async {
+    try {
+      return await _media.invokeMethod<bool>('openUrl', {'url': url}) ?? false;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<int?> sdkInt() async {
     try {
       return await _media.invokeMethod<int>('getSdkInt');

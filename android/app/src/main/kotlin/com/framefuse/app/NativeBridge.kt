@@ -1,6 +1,9 @@
 package com.framefuse.app
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Handler
 import android.os.Looper
@@ -52,6 +55,23 @@ class NativeBridge(private val context: Context, messenger: BinaryMessenger) :
             "getSdkInt" -> result.success(Build.VERSION.SDK_INT)
 
             "getFreeBytes" -> background(result) { StorageInfo.freeBytes(context) }
+
+            "openUrl" -> {
+                val url = call.argument<String>("url")
+                if (url == null || !url.startsWith("https://")) {
+                    result.error("bad_args", "https url required", null)
+                    return
+                }
+                try {
+                    context.startActivity(
+                        Intent(Intent.ACTION_VIEW, Uri.parse(url))
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    )
+                    result.success(true)
+                } catch (e: ActivityNotFoundException) {
+                    result.success(false)
+                }
+            }
 
             "exportVideo" -> {
                 val id = call.argument<String>("id") ?: ""

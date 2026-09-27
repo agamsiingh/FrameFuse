@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/platform/native_media_service.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../shared/models/aspect_ratio.dart';
 import '../../../shared/widgets/brand.dart';
@@ -115,12 +116,17 @@ class SettingsScreen extends ConsumerWidget {
                 builder: (ctx) => AlertDialog(
                   title: const Text('Totally private', style: TextStyle(fontSize: 18)),
                   content: const Text(
-                    'FrameFuse has no account, no analytics and no network access. '
+                    'FrameFuse has no account, no analytics and does not use the internet. '
                     'Recordings stay on your device and are only copied to your '
                     'gallery or shared when you choose to.',
                     style: TextStyle(color: AppColors.textSecondary, height: 1.45),
                   ),
                   actions: [
+                    TextButton(
+                      onPressed: () => NativeMediaService()
+                          .openUrl(AppConstants.privacyPolicyUrl),
+                      child: const Text('Privacy policy'),
+                    ),
                     TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('OK')),
                   ],
                 ),
