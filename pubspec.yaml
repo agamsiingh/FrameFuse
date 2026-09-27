@@ -1,7 +1,7 @@
 name: frame_fuse
 description: "FrameFuse — One take. Both formats. Record once, get portrait 9:16 and landscape 16:9."
 publish_to: 'none'
-version: 1.0.2+3
+version: 1.0.2+4
 
 environment:
   sdk: ^3.12.1
